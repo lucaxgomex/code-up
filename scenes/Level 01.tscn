@@ -1,13 +1,47 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/test/pixil-frame-0 (1).png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://scripts/Sprite.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 17.25, 17 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 160, 7 )
 
 [node name="Level 01" type="Node2D"]
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 114, 111 )
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+anchor_left = -112.975
+anchor_top = -110.596
+anchor_right = 204.543
+anchor_bottom = 84.434
+margin_left = -2.02499
+margin_top = 0.596008
+margin_right = 2.45699
+margin_bottom = 3.56599
 
 [node name="Player" type="KinematicBody2D" parent="."]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Player"]
-position = Vector2( 153, 79 )
+position = Vector2( 158.25, 26.25 )
+scale = Vector2( 0.345, 0.345 )
 texture = ExtResource( 1 )
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2( 158.25, 26.25 )
+shape = SubResource( 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 160, 192 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D"]
